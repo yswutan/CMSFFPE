@@ -60,6 +60,20 @@ ChangeEntrezFromName <- function(GeneCount){
 	return(Convert)
 }
 #
+RowDFtoRawNum <- function(ExpDataframe){
+  for(i in 1:dim(ExpDataframe)[2]){
+    tmp <- as.numeric(ExpDataframe[, i])
+    if(i == 1){
+      Matrix <- tmp
+    } else {
+      Matrix <- cbind(Matrix, tmp)
+    }
+  }
+  colnames(Matrix) <- colnames(ExpDataframe)
+  rownames(Matrix) <- rownames(ExpDataframe)
+  df <- as.data.frame(Matrix)
+  return(df)
+}
 DeleteDupChoseMax <- function(ExpDataframe, ReplaceName, by="row", ori=FALSE){
 	if(by == "row"){
 		ReplaceRowname <- ReplaceName
